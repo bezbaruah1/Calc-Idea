@@ -1,0 +1,112 @@
+.display-box {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #dcdbe1;
+    border: solid black 0.5px;
+    color: black;
+    border-radius: 5px;
+    width: 100%;
+    height: 65%;
+   }
+   .button {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #488f27d8;
+    color: white;
+    border: solid black 0.5px;
+    width: 100%;
+    border-radius: 5px;
+    height: 70%;
+    outline: none;
+   }
+   .button:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+   }
+   h1 {
+    margin: 50px auto;
+    text-align: center;
+    color: rgb(238, 130, 238);
+    font-size: 5em;
+    transition: 0.5s;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  h1:hover {
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
+                 0 3px 0 #ccc, 0 4px 0 #ccc,
+                 0 5px 0 #ccc, 0 6px 0 #ccc,
+                 0 7px 0 #ccc, 0 8px 0 #ccc,
+                 0 9px 0 #ccc, 0 10px 0 #ccc,
+                 0 11px 0 #ccc, 0 12px 0 #ccc,
+                 0 20px 30px rgba(0, 0, 0, 0.5);
+  }  
+  p {
+      color: rgb(255, 0, 242);
+      font-family: arial;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 1.5rem;
+      font-weight: bold;
+  }
+  body {
+    background-image: url("../Images/calc5.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+   }
+   html, body{
+    height: 100%;
+  }
+  p, ol, ul{
+    margin-top: 0;
+  }
+  
+  p {
+    line-height: 180%;
+  }
+  
+  ol, ul{
+    padding: 0;
+    list-style: none;
+  }
+  #menu{
+    float: right;
+    width: 70%;
+    height: 100%;
+    margin: auto;
+  }
+    
+  #menu ul{
+    text-align: center;
+    float: right;
+    margin: 10px;
+    background: #9800d9;
+  }
+    
+  #menu li{
+    display: inline-block;
+    padding: 5px;
+    margin: 10px;
+  }
+    
+  #menu li a, #menu li span{
+    display: inline-block;
+    padding: 0em 1.5em;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 50px;
+  }
+    
+  #menu li a{
+      
+    color: #FFF;
+  }
+  #menu li:hover a, #menu li span{
+    background: #FFF;
+    color: #0074D9;
+    border-left: 1px solid #0074D9;
+    text-decoration: none;
+  }
