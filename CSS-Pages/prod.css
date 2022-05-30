@@ -55,6 +55,8 @@
     -o-background-size: cover;
     background-size: cover;
     background-position: center;
+    background-blend-mode: darken;
+    background-color: #dfeb38;
    }
    html, body{
     height: 100%;

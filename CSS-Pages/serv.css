@@ -55,6 +55,8 @@
     -o-background-size: cover;
     background-size: cover;
     background-position: center;
+    background-blend-mode:difference;
+    background-color: #8bf453;
    }
    html, body{
     height: 100%;

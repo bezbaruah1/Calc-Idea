@@ -59,6 +59,8 @@ p {
     -o-background-size: cover;
     background-size: cover;
     background-position: center;
+    background-blend-mode:darken;
+    background-color: #d9bc00;
    }
    html, body{
     height: 100%;

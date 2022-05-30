@@ -60,6 +60,8 @@
     font-family: sans-serif;
     box-sizing: border-box;
     background-attachment: fixed;
+    background-blend-mode:darken;
+    background-color: #00d904;
    }
 
   html, body{
