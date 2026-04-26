@@ -12,6 +12,7 @@
     let previousInput = '';
     let operator = null;
     let shouldResetDisplay = false;
+    let lastWasOperation = false;
     
     // Clear screen function
     function clearScreen() {
@@ -19,12 +20,13 @@
         previousInput = '';
         operator = null;
         shouldResetDisplay = false;
+        lastWasOperation = false;
         updateDisplay('0');
     }
     
     // Update display
     function updateDisplay(value) {
-        display.value = value;
+        display.value = value.toString();
     }
     
     // Add number to display
@@ -32,14 +34,27 @@
         const num = e.target.dataset.num;
         
         if (shouldResetDisplay) {
-            currentInput = num;
+            // Starting a new number after an operation
+            if (num === '.') {
+                currentInput = '0.';
+            } else {
+                currentInput = num;
+            }
             shouldResetDisplay = false;
+            lastWasOperation = false;
         } else {
             // Prevent multiple decimals
-            if (num === '.' && currentInput.includes('.')) {
-                return;
+            if (num === '.') {
+                if (currentInput === '') {
+                    currentInput = '0.';
+                } else if (currentInput.includes('.')) {
+                    return;
+                } else {
+                    currentInput += num;
+                }
+            } else {
+                currentInput += num;
             }
-            currentInput += num;
         }
         updateDisplay(currentInput || '0');
     }
@@ -48,25 +63,35 @@
     function handleOperationClick(e) {
         const op = e.target.dataset.op;
         
-        if (operator && currentInput) {
+        // If there's already an operation pending and current input exists, calculate first
+        if (operator && currentInput && !lastWasOperation) {
             calculate();
         }
         
-        previousInput = currentInput;
+        // If no previous input, use current as previous
+        if (!previousInput && currentInput) {
+            previousInput = currentInput;
+        }
+        
         operator = op;
         currentInput = '';
         shouldResetDisplay = true;
+        lastWasOperation = true;
     }
     
     // Safe calculation without eval()
     function calculate() {
-        if (!operator || !previousInput || !currentInput) {
+        if (!operator || previousInput === '' || currentInput === '') {
             return;
         }
         
         const prev = parseFloat(previousInput);
         const current = parseFloat(currentInput);
         let result = 0;
+        
+        if (isNaN(prev) || isNaN(current)) {
+            return;
+        }
         
         try {
             switch(operator) {
@@ -82,7 +107,7 @@
                 case '/':
                     if (current === 0) {
                         updateDisplay('Error: Division by zero');
-                        resetCalculator();
+                        clearScreen();
                         return;
                     }
                     result = prev / current;
@@ -98,18 +123,12 @@
             operator = null;
             previousInput = '';
             shouldResetDisplay = true;
+            lastWasOperation = false;
             updateDisplay(result);
         } catch (error) {
             updateDisplay('Error');
-            resetCalculator();
+            clearScreen();
         }
-    }
-    
-    function resetCalculator() {
-        currentInput = '';
-        previousInput = '';
-        operator = null;
-        shouldResetDisplay = true;
     }
     
     // Handle equals button
