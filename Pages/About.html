@@ -1,45 +1,50 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>My Story</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="About Me - Learn more about the tech calculator designer">
+        <title>About Me</title>
         <link rel="stylesheet" href="../CSS-Pages/abou.css">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <div style="text-align: center;">
+        <header>
             <h1>Design Gothrough</h1>
-            </div>
+        </header>
         <nav>
             <div id="menu">
               <ul>
-                  <li class="active"><a href="../index.html" target="self">Home</a></li>
-                  <li><a href="../Pages/About.html" target="self">About Me</a></li>
-                  <li><a href="../Pages/Products.html" target="self">Products</a></li>
-                  <li><a href="../Pages/Service.html" target="self">Service</a></li>
-                  <li><a href="../Pages/Contact.html" target="self">Contact</a></li>
+                  <li><a href="../index.html">Home</a></li>
+                  <li class="active"><a href="About.html">About Me</a></li>
+                  <li><a href="Products.html">Products</a></li>
+                  <li><a href="Service.html">Service</a></li>
+                  <li><a href="Contact.html">Contact</a></li>
               </ul>
             </div>
-          </nav>
-          <div id="header">
-              <h2>This to be on click</h2>
-              <div>
-                  <input type="checkbox" id="on picture" name="To click" value="list">
-                  <input type="checkbox" id="behalf" name="To click" value="orange">
-                  <input type="checkbox" id="by click" name="To click" value="green">
-                  <input type="checkbox" id="to button" name="To click" value="yellow">
-
-              </div>
-          </div>
-          <script src="default.js"></script>
+        </nav>
+        
+        <main>
+            <div id="header">
+                <h2>This to be on click</h2>
+                <div>
+                    <div>
+                        <input type="checkbox" id="picture-option" name="design-option" value="picture">
+                        <label for="picture-option">Picture</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="behalf-option" name="design-option" value="behalf">
+                        <label for="behalf-option">Behalf</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="click-option" name="design-option" value="click">
+                        <label for="click-option">Click</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="button-option" name="design-option" value="button">
+                        <label for="button-option">Button</label>
+                    </div>
+                </div>
+            </div>
+        </main>
     </body>
 </html>

@@ -1,83 +1,80 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Contact Use</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Contact Me - Get in touch with the calculator designer">
+        <title>Contact Me</title>
         <link rel="stylesheet" href="../CSS-Pages/cont.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <div style="text-align: center;">
+        <header>
             <h1>Contact Me</h1>
-            </div>
+        </header>
         <nav>
             <div id="menu">
               <ul>
-                  <li class="active"><a href="../index.html" target="self">Home</a></li>
-                  <li><a href="../Pages/About.html" target="self">About Me</a></li>
-                  <li><a href="../Pages/Products.html" target="self">Products</a></li>
-                  <li><a href="../Pages/Service.html" target="self">Service</a></li>
-                  <li><a href="../Pages/Contact.html" target="self">Contact</a></li>
+                  <li><a href="../index.html">Home</a></li>
+                  <li><a href="About.html">About Me</a></li>
+                  <li><a href="Products.html">Products</a></li>
+                  <li><a href="Service.html">Service</a></li>
+                  <li class="active"><a href="Contact.html">Contact</a></li>
               </ul>
             </div>
-          </nav>
-          <div class="container">
-            <div class="formWraper">
-     
-                <!-- Left section of responsive registration form -->
-     
-                <div class="formDiv">
-                    <h2>Create Account</h2>
-                    <p class="text"> Sign Up with Social Media</p>
-     
-                 <!-- Font Awesome Icons -->
-                    <div class="socialBtn">
-                        <div class="facebook icon"><i class="fab fa-facebook-f"></i></div>
-                        <div class="twitter icon"><i class="fab fa-twitter"></i></div>
-                        <div class="instagram icon"><i class="fab fa-instagram"></i></div>
+        </nav>
+        
+        <main>
+            <div class="container">
+                <div class="formWraper">
+                    <div class="formDiv">
+                        <h2>Create Account</h2>
+                        <p>Sign Up with Social Media</p>
+                        
+                        <div class="socialBtn">
+                            <a href="#facebook" class="icon facebook" aria-label="Facebook" title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#twitter" class="icon twitter" aria-label="Twitter" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#instagram" class="icon instagram" aria-label="Instagram" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                        
+                        <hr>
+                        <p style="text-align: center; margin: 15px 0; color: #999;">Or</p>
+                        
+                        <p>Sign Up with Email Address</p>
+                        <form>
+                            <div class="formGroup">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="formGroup">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="formGroup">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" placeholder="Your Password" required>
+                            </div>
+                            <div class="checkBox">
+                                <input type="checkbox" name="checkbox" id="checkbox" required>
+                                <label for="checkbox">I Agree with Terms & Conditions</label>
+                            </div>
+                            <button type="submit" class="btn">SIGN UP</button>
+                        </form>
                     </div>
-                     
-                    <!--Horizontal Line-->
-                    <hr>
-                    <div class="orDiv">Or</div>
-     
-                    <p class="text">Sign Up with Email Address</p>
-                    <div class="formGroup">
-                        <i class="far fa-user"></i>
-                        <input type="text" name="name" id="name" placeholder="Name">
+                    
+                    <div class="welcomeDiv">
+                        <h2>Welcome Friends!</h2>
+                        <p>Get in touch with us for updates.</p>
+                        <button class="btn2" onclick="alert('Redirecting to sign in...')">SIGN IN</button>
                     </div>
-                    <div class="formGroup">
-                        <i class="far fa-envelope"></i>
-                        <input type="email" name="email" id="email" placeholder="Email">
-                    </div>
-                    <div class="formGroup">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" name="password" id="password" placeholder="Password">
-                    </div>
-                    <div class="checkBox">
-                        <input type="checkbox" name="checkbox" id="checkbox">
-                        <span class="text">I Agree with Term & Conditions.</span>
-                    </div>
-                    <button class="btn">SIGN UP</button>
-                </div>
-     
-                <!-- Right section of responsive registration form -->
-                <div class="welcomeDiv">
-                    <h2>Welcome Friends!</h2>
-                    <p class="text">Get in touch with us for updates.</p>
-                    <button class="btn2">SIGN IN</button>
                 </div>
             </div>
-        </div>
-        <script src="default.js"></script>
+        </main>
     </body>
 </html>
