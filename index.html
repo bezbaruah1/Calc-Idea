@@ -24,10 +24,15 @@
           </nav>
         
         <main>
-            <div class="calculator-container">
-                <input class="display-box" type="text" id="result" disabled aria-label="Calculator display" />
-                
-                <div class="buttons-grid">
+            <div class="preview-controls">
+                <button id="preview3DBtn" class="toggle-3d-btn">Enable 3D Preview</button>
+            </div>
+            
+            <div id="perspective-container" class="perspective-container">
+                <div class="calculator-container" id="calculatorElement">
+                    <input class="display-box" type="text" id="result" disabled aria-label="Calculator display" />
+                    
+                    <div class="buttons-grid">
                     <button class="button btn-clear" id="clearBtn" type="button">C</button>
                     <button class="button" type="button" data-op="/">/</button>
                     <button class="button" type="button" data-op="*">*</button>
@@ -50,6 +55,7 @@
                     
                     <button class="button btn-zero" type="button" data-num="0">0</button>
                 </div>
+            </div>
             </div>
         </main>
         

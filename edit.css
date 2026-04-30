@@ -281,4 +281,79 @@ ol, ul {
     outline: 3px solid #00d9fb;
     outline-offset: 2px;
 }
+
+/* 3D Preview Styles */
+.preview-controls {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.toggle-3d-btn {
+    background: linear-gradient(135deg, #00d9fb, #fb00bc);
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 217, 251, 0.4);
+}
+
+.toggle-3d-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 217, 251, 0.6);
+}
+
+.toggle-3d-btn:active {
+    transform: scale(0.98);
+}
+
+.toggle-3d-btn.active {
+    background: linear-gradient(135deg, #fb00bc, #00d9fb);
+    box-shadow: 0 0 20px rgba(251, 0, 188, 0.8);
+}
+
+/* Perspective Container */
+.perspective-container {
+    perspective: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    transform-style: preserve-3d;
+}
+
+#calculatorElement {
+    transition: transform 0.05s ease-out;
+    transform-style: preserve-3d;
+}
+
+#calculatorElement.perspective-3d {
+    transform: rotateX(0deg) rotateY(0deg) scale(1);
+}
+
+/* 3D hover effects for buttons in 3D mode */
+#calculatorElement.perspective-3d .button {
+    transition: all 0.1s ease;
+    transform-style: preserve-3d;
+}
+
+#calculatorElement.perspective-3d .button:hover {
+    transform: translateZ(10px) scale(1.08);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 217, 251, 0.5);
+}
+
+#calculatorElement.perspective-3d .display-box {
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 217, 251, 0.3);
+}
+
+/* Glow effect for 3D mode */
+.glow-3d {
+    box-shadow: 0 0 30px rgba(0, 217, 251, 0.6),
+                0 0 60px rgba(251, 0, 188, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+}
   
