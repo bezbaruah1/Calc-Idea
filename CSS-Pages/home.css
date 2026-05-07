@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -10,47 +8,47 @@
 html, body {
     height: 100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
 body {
     background-image: url("../Images/calc1.jpg");
     background-size: cover;
     background-position: center center;
-    background-attachment: fixed;
-    background-blend-mode: darken;
+    background-attachment: scroll;
     background-color: #42ec8c;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header & Title */
 header {
     text-align: center;
-    padding: 20px 10px;
+    padding: 4px 10px 2px 10px;
+    flex-shrink: 0;
 }
 
 h1 {
-    margin: 20px auto;
+    margin: 2px auto 5px auto;
     color: rgb(255, 255, 255);
     font-size: clamp(2rem, 5vw, 3rem);
-    transition: 0.5s;
-    font-family: Arial, Helvetica, sans-serif;
+    transition: text-shadow 0.3s ease;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 h1:hover {
-    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
-                 0 3px 0 #ccc, 0 4px 0 #ccc,
-                 0 5px 0 #ccc, 0 6px 0 #ccc,
-                 0 7px 0 #ccc, 0 8px 0 #ccc,
-                 0 9px 0 #ccc, 0 10px 0 #ccc,
-                 0 11px 0 #ccc, 0 12px 0 #ccc,
-                 0 20px 30px rgba(0, 0, 0, 0.5);
+    text-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Navigation Menu */
 nav {
     width: 100%;
-    padding: 10px;
+    padding: 2px 10px;
+    flex-shrink: 0;
 }
 
 #menu {
@@ -63,8 +61,8 @@ nav {
     flex-wrap: wrap;
     justify-content: center;
     background: #9800d9;
-    margin: 10px 0;
-    padding: 10px;
+    margin: 5px 0;
+    padding: 8px;
     border-radius: 5px;
 }
 
@@ -83,13 +81,15 @@ nav {
     font-size: clamp(0.8rem, 2vw, 1rem);
     color: #FFF;
     border-radius: 3px;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    min-height: 40px;
+    min-width: 40px;
+    touch-action: manipulation;
 }
 
 #menu li a:hover, #menu li span:hover {
     background: #FFF;
     color: #0074D9;
-    transform: scale(1.05);
 }
 
 /* Calculator Container */
@@ -97,24 +97,27 @@ nav {
     max-width: 500px;
     width: 100%;
     padding: 10px;
-    margin: 20px auto;
+    margin: 1px auto 5px auto;
     background-color: #191b28;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    will-change: transform;
 }
 
 .display-box {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', monospace;
     background-color: #dcdbe1;
     border: 2px solid black;
     color: black;
     border-radius: 5px;
     width: 100%;
     padding: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     text-align: right;
     font-weight: bold;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .display-box:disabled {
@@ -129,7 +132,7 @@ nav {
 }
 
 .button {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', monospace;
     background-color: #488f27d8;
     color: white;
     border: 2px solid black;
@@ -138,13 +141,17 @@ nav {
     font-size: clamp(0.9rem, 2vw, 1.2rem);
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
     outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
 }
 
 .button:hover {
     background-color: #5aa636;
-    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -152,7 +159,6 @@ nav {
     background: #e5e5e5;
     color: #333;
     box-shadow: inset 0px 0px 5px #c1c1c1;
-    transform: translateY(0);
 }
 
 .btn-clear {
@@ -201,154 +207,48 @@ ol, ul {
     list-style: none;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header {
-        padding: 15px 5px;
-    }
-    
-    h1 {
-        margin: 15px auto;
-    }
-    
-    #menu ul {
-        flex-direction: column;
-    }
-    
-    #menu li {
-        width: 100%;
-        text-align: center;
-    }
-    
-    #menu li a, #menu li span {
-        width: 100%;
-        display: block;
-    }
-    
-    main {
-        padding: 15px 5px;
-    }
-    
-    .perspective-container {
-        min-height: 350px;
-    }
-    
-    .calculator-container {
-        margin: 15px auto;
-    }
-    
-    .buttons-grid {
-        gap: 6px;
-    }
-    
-    .button {
-        padding: 12px;
-    }
-    
-    .preview-controls {
-        margin: 10px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    header {
-        padding: 10px 5px;
-    }
-    
-    h1 {
-        margin: 10px auto;
-        font-size: 1.5rem;
-    }
-    
-    main {
-        padding: 10px 5px;
-    }
-    
-    .perspective-container {
-        min-height: 320px;
-        max-width: 100%;
-    }
-    
-    .calculator-container {
-        max-width: 100%;
-        margin: 10px;
-        padding: 8px;
-    }
-    
-    .display-box {
-        font-size: 1.2rem;
-        padding: 10px;
-        margin-bottom: 8px;
-    }
-    
-    .buttons-grid {
-        gap: 5px;
-    }
-    
-    .button {
-        padding: 10px;
-        font-size: 1rem;
-    }
-    
-    .btn-zero {
-        grid-column: span 2;
-    }
-    
-    .toggle-3d-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Accessibility */
-.button:focus {
-    outline: 3px solid #00d9fb;
-    outline-offset: 2px;
-}
-
-.display-box:focus {
-    outline: 3px solid #00d9fb;
-    outline-offset: 2px;
-}
-
 /* Main Content Area */
 main {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex: 1;
-    padding: 20px 10px;
+    padding: 3px 10px 20px 10px;
 }
 
 /* 3D Preview Button */
 .preview-controls {
     text-align: center;
-    margin: 15px 0;
+    margin: 2px 0 5px 0;
     width: 100%;
+    flex-shrink: 0;
 }
 
 .toggle-3d-btn {
     background: linear-gradient(135deg, #00d9fb, #fb00bc);
     color: white;
     border: 2px solid white;
-    padding: 12px 30px;
-    font-size: 1rem;
+    padding: 10px 25px;
+    font-size: 0.95rem;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 217, 251, 0.4);
+    -webkit-appearance: none;
+    appearance: none;
+    min-height: 44px;
+    touch-action: manipulation;
 }
 
 .toggle-3d-btn:hover {
-    transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(0, 217, 251, 0.6);
 }
 
 .toggle-3d-btn:active {
-    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 217, 251, 0.4);
 }
 
 .toggle-3d-btn.active {
@@ -360,12 +260,13 @@ main {
 .perspective-container {
     perspective: 1200px;
     width: 100%;
-    max-width: 600px;
+    max-width: 520px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 400px;
+    min-height: auto;
     transform-style: preserve-3d;
+    padding: 0 5px;
 }
 
 #calculatorElement {
@@ -375,17 +276,17 @@ main {
 }
 
 #calculatorElement.perspective-3d {
-    transform: rotateX(0deg) rotateY(0deg) scale(1);
+    will-change: transform;
 }
 
 /* 3D hover effects for buttons in 3D mode */
 #calculatorElement.perspective-3d .button {
-    transition: all 0.1s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
     transform-style: preserve-3d;
 }
 
 #calculatorElement.perspective-3d .button:hover {
-    transform: translateZ(10px) scale(1.08);
+    transform: translateZ(10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 217, 251, 0.5);
 }
 
@@ -398,4 +299,351 @@ main {
     box-shadow: 0 0 30px rgba(0, 217, 251, 0.6),
                 0 0 60px rgba(251, 0, 188, 0.3),
                 inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Responsive Design */
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+    .calculator-container {
+        max-width: 550px;
+    }
+    
+    .perspective-container {
+        max-width: 550px;
+    }
+}
+
+/* Desktop (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .calculator-container {
+        max-width: 520px;
+    }
+    
+    .perspective-container {
+        max-width: 520px;
+    }
+}
+
+/* Tablet Landscape (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    header {
+        padding: 8px 8px 3px 8px;
+    }
+    
+    h1 {
+        margin: 3px auto 6px auto;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    
+    nav {
+        padding: 2px 8px;
+    }
+    
+    #menu ul {
+        margin: 3px 0;
+        padding: 6px;
+    }
+    
+    main {
+        padding: 5px 8px 15px 8px;
+    }
+    
+    .preview-controls {
+        margin: 2px 0 5px 0;
+    }
+    
+    .toggle-3d-btn {
+        padding: 9px 22px;
+        font-size: 0.9rem;
+    }
+    
+    .perspective-container {
+        max-width: 480px;
+    }
+    
+    .calculator-container {
+        max-width: 470px;
+        margin: 2px auto 6px auto;
+    }
+    
+    .buttons-grid {
+        gap: 6px;
+    }
+    
+    .button {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    
+    .display-box {
+        padding: 12px;
+        font-size: 1.4rem;
+    }
+}
+
+/* Tablet Portrait (600px - 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+    header {
+        padding: 6px 6px 2px 6px;
+    }
+    
+    h1 {
+        margin: 2px auto 5px auto;
+        font-size: clamp(1.3rem, 3.5vw, 2rem);
+    }
+    
+    nav {
+        padding: 2px 6px;
+    }
+    
+    #menu ul {
+        margin: 2px 0;
+        padding: 5px;
+        gap: 3px;
+    }
+    
+    #menu li {
+        margin: 2px;
+    }
+    
+    main {
+        padding: 3px 6px 12px 6px;
+    }
+    
+    .preview-controls {
+        margin: 1px 0 4px 0;
+    }
+    
+    .toggle-3d-btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .perspective-container {
+        max-width: 95%;
+    }
+    
+    .calculator-container {
+        max-width: 100%;
+        margin: 1px auto 4px auto;
+        padding: 9px;
+    }
+    
+    .buttons-grid {
+        gap: 5px;
+    }
+    
+    .button {
+        padding: 11px;
+        font-size: 0.95rem;
+    }
+    
+    .display-box {
+        padding: 12px;
+        font-size: 1.3rem;
+        margin-bottom: 7px;
+    }
+}
+
+/* Mobile Large (480px - 599px) */
+@media (min-width: 480px) and (max-width: 599px) {
+    header {
+        padding: 5px 5px 1px 5px;
+    }
+    
+    h1 {
+        margin: 1px auto 4px auto;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+    }
+    
+    nav {
+        padding: 2px 5px;
+    }
+    
+    #menu ul {
+        margin: 2px 0;
+        padding: 4px;
+    }
+    
+    main {
+        padding: 3px 5px 10px 5px;
+    }
+    
+    .preview-controls {
+        margin: 1px 0 3px 0;
+    }
+    
+    .toggle-3d-btn {
+        padding: 8px 18px;
+        font-size: 0.8rem;
+    }
+    
+    .perspective-container {
+        max-width: 100%;
+    }
+    
+    .calculator-container {
+        max-width: 100%;
+        margin: 1px 5px 3px 5px;
+        padding: 8px;
+    }
+    
+    .display-box {
+        font-size: 1.2rem;
+        padding: 10px;
+        margin-bottom: 6px;
+    }
+    
+    .buttons-grid {
+        gap: 5px;
+    }
+    
+    .button {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+    
+    .btn-zero {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile Small (320px - 479px) */
+@media (max-width: 479px) {
+    header {
+        padding: 4px 5px 1px 5px;
+    }
+    
+    h1 {
+        margin: 1px auto 3px auto;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+    }
+    
+    nav {
+        padding: 1px 5px;
+    }
+    
+    #menu ul {
+        margin: 1px 0;
+        padding: 3px;
+        gap: 1px;
+    }
+    
+    #menu li {
+        margin: 1px;
+    }
+    
+    #menu li a, #menu li span {
+        padding: 0.4em 1em;
+        font-size: 0.75rem;
+        line-height: 32px;
+    }
+    
+    main {
+        padding: 2px 5px 8px 5px;
+    }
+    
+    .preview-controls {
+        margin: 0px 0 2px 0;
+    }
+    
+    .toggle-3d-btn {
+        padding: 7px 15px;
+        font-size: 0.75rem;
+    }
+    
+    .perspective-container {
+        max-width: 100%;
+    }
+    
+    .calculator-container {
+        max-width: 100%;
+        margin: 0px 4px 2px 4px;
+        padding: 7px;
+    }
+    
+    .display-box {
+        font-size: 1rem;
+        padding: 8px;
+        margin-bottom: 5px;
+    }
+    
+    .buttons-grid {
+        gap: 4px;
+    }
+    
+    .button {
+        padding: 9px;
+        font-size: 0.85rem;
+    }
+    
+    .btn-zero {
+        grid-column: span 2;
+    }
+}
+
+/* Extra Small Devices (< 320px) */
+@media (max-width: 319px) {
+    header {
+        padding: 3px 4px 0px 4px;
+    }
+    
+    h1 {
+        margin: 0px auto 2px auto;
+        font-size: 1rem;
+    }
+    
+    nav {
+        padding: 1px 4px;
+    }
+    
+    #menu ul {
+        margin: 0px;
+        padding: 2px;
+    }
+    
+    #menu li a, #menu li span {
+        padding: 0.3em 0.8em;
+        font-size: 0.7rem;
+        line-height: 28px;
+    }
+    
+    main {
+        padding: 1px 4px 6px 4px;
+    }
+    
+    .preview-controls {
+        margin: 0px 0 1px 0;
+    }
+    
+    .toggle-3d-btn {
+        padding: 5px 12px;
+        font-size: 0.65rem;
+    }
+    
+    .calculator-container {
+        margin: 0px 3px 1px 3px;
+        padding: 6px;
+    }
+    
+    .display-box {
+        font-size: 0.9rem;
+        padding: 6px;
+    }
+    
+    .button {
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Accessibility */
+.button:focus {
+    outline: 3px solid #00d9fb;
+    outline-offset: 2px;
+}
+
+.display-box:focus {
+    outline: 3px solid #00d9fb;
+    outline-offset: 2px;
 }

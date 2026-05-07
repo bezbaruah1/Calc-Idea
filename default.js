@@ -5,8 +5,7 @@
     const display = document.getElementById('result');
     const clearBtn = document.getElementById('clearBtn');
     const equalsBtn = document.getElementById('equalsBtn');
-    const numButtons = document.querySelectorAll('[data-num]');
-    const opButtons = document.querySelectorAll('[data-op]');
+    const buttonsGrid = document.querySelector('.buttons-grid');
     
     let currentInput = '';
     let previousInput = '';
@@ -30,11 +29,8 @@
     }
     
     // Add number to display
-    function handleNumberClick(e) {
-        const num = e.target.dataset.num;
-        
+    function handleNumberClick(num) {
         if (shouldResetDisplay) {
-            // Starting a new number after an operation
             if (num === '.') {
                 currentInput = '0.';
             } else {
@@ -43,7 +39,6 @@
             shouldResetDisplay = false;
             lastWasOperation = false;
         } else {
-            // Prevent multiple decimals
             if (num === '.') {
                 if (currentInput === '') {
                     currentInput = '0.';
@@ -60,15 +55,11 @@
     }
     
     // Handle operations
-    function handleOperationClick(e) {
-        const op = e.target.dataset.op;
-        
-        // If there's already an operation pending and current input exists, calculate first
+    function handleOperationClick(op) {
         if (operator && currentInput && !lastWasOperation) {
             calculate();
         }
         
-        // If no previous input, use current as previous
         if (!previousInput && currentInput) {
             previousInput = currentInput;
         }
@@ -138,6 +129,22 @@
         }
     }
     
+    // Event delegation for button clicks
+    function handleButtonClick(e) {
+        const target = e.target;
+        
+        if (!target.classList.contains('button')) return;
+        
+        const num = target.dataset.num;
+        const op = target.dataset.op;
+        
+        if (num !== undefined) {
+            handleNumberClick(num);
+        } else if (op !== undefined) {
+            handleOperationClick(op);
+        }
+    }
+    
     // Event listeners
     if (clearBtn) {
         clearBtn.addEventListener('click', clearScreen);
@@ -147,13 +154,10 @@
         equalsBtn.addEventListener('click', handleEquals);
     }
     
-    numButtons.forEach(btn => {
-        btn.addEventListener('click', handleNumberClick);
-    });
-    
-    opButtons.forEach(btn => {
-        btn.addEventListener('click', handleOperationClick);
-    });
+    // Use event delegation on grid instead of multiple listeners
+    if (buttonsGrid) {
+        buttonsGrid.addEventListener('click', handleButtonClick);
+    }
     
     // Initialize display
     updateDisplay('0');
@@ -168,6 +172,10 @@
     const perspectiveContainer = document.querySelector('.perspective-container');
     
     let is3DEnabled = false;
+    let mouseX = 0;
+    let mouseY = 0;
+    let containerRect = null;
+    let animationFrameId = null;
     
     // Toggle 3D preview mode
     function toggle3DPreview() {
@@ -177,35 +185,61 @@
             preview3DBtn.textContent = 'Disable 3D Preview';
             preview3DBtn.classList.add('active');
             calculatorElement.classList.add('perspective-3d', 'glow-3d');
-            perspectiveContainer.addEventListener('mousemove', handle3DMouseMove);
+            perspectiveContainer.addEventListener('mousemove', handleMouseMove);
             perspectiveContainer.addEventListener('mouseleave', reset3DTransform);
         } else {
             preview3DBtn.textContent = 'Enable 3D Preview';
             preview3DBtn.classList.remove('active');
             calculatorElement.classList.remove('perspective-3d', 'glow-3d');
-            perspectiveContainer.removeEventListener('mousemove', handle3DMouseMove);
+            perspectiveContainer.removeEventListener('mousemove', handleMouseMove);
             perspectiveContainer.removeEventListener('mouseleave', reset3DTransform);
+            
+            // Cancel any pending animation frame
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+            
             calculatorElement.style.transform = '';
         }
     }
     
-    // Handle mouse movement for 3D effect
-    function handle3DMouseMove(e) {
+    // Handle mouse movement - stores coordinates only
+    function handleMouseMove(e) {
         if (!is3DEnabled) return;
         
-        const rect = perspectiveContainer.getBoundingClientRect();
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
         
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+        // Only update rect occasionally for performance
+        if (!containerRect) {
+            containerRect = perspectiveContainer.getBoundingClientRect();
+        }
         
-        const rotateX = ((mouseY - centerY) / centerY) * 15;
-        const rotateY = ((mouseX - centerX) / centerX) * 15;
+        // Request animation frame for smooth updates
+        if (!animationFrameId) {
+            animationFrameId = requestAnimationFrame(apply3DTransform);
+        }
+    }
+    
+    // Apply 3D transform - runs once per frame
+    function apply3DTransform() {
+        animationFrameId = null;
         
-        const distance = Math.sqrt(Math.pow(mouseX - centerX, 2) + Math.pow(mouseY - centerY, 2));
-        const maxDistance = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2));
-        const scale = 1 + (1 - distance / maxDistance) * 0.05;
+        if (!is3DEnabled || !containerRect) return;
+        
+        const centerX = containerRect.width / 2;
+        const centerY = containerRect.height / 2;
+        
+        const relativeX = mouseX - containerRect.left;
+        const relativeY = mouseY - containerRect.top;
+        
+        const rotateX = ((relativeY - centerY) / centerY) * 12;
+        const rotateY = ((relativeX - centerX) / centerX) * 12;
+        
+        const distance = Math.hypot(relativeX - centerX, relativeY - centerY);
+        const maxDistance = Math.hypot(centerX, centerY);
+        const scale = 1 + (1 - distance / maxDistance) * 0.03;
         
         calculatorElement.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
     }
@@ -213,12 +247,29 @@
     // Reset 3D transform when mouse leaves
     function reset3DTransform() {
         if (is3DEnabled) {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
             calculatorElement.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+            containerRect = null;
         }
     }
     
-    // Event listener for toggle button
+    // Update container rect on resize for responsive
+    function handleResize() {
+        containerRect = null;
+    }
+    
+    // Event listeners
     if (preview3DBtn) {
         preview3DBtn.addEventListener('click', toggle3DPreview);
     }
+    
+    // Debounced resize handler
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(handleResize, 250);
+    });
 })();
