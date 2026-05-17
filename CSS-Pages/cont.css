@@ -9,41 +9,48 @@
 html, body {
     height: 100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
 body {
     background-image: url("../Images/calc3.jpg");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-blend-mode: darken;
     background-color: #00d904;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     text-align: center;
-    padding: 20px 10px;
+    padding: 4px 10px 2px 10px;
+    flex-shrink: 0;
 }
 
 h1 {
-    margin: 20px auto;
+    margin: 2px auto 10px auto;
     color: rgb(106, 90, 205);
     font-size: clamp(2rem, 5vw, 3rem);
-    transition: 0.5s;
+    transition: text-shadow 0.3s ease;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 100%;
 }
 
 h1:hover {
-    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
-                 0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 0 8px 0 #ccc,
-                 0 9px 0 #ccc, 0 10px 0 #ccc, 0 11px 0 #ccc, 0 12px 0 #ccc,
-                 0 20px 30px rgba(0, 0, 0, 0.521);
+    text-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 nav {
     width: 100%;
-    padding: 10px;
+    padding: 2px 10px;
+    flex-shrink: 0;
 }
 
 #menu {
@@ -56,8 +63,8 @@ nav {
     flex-wrap: wrap;
     justify-content: center;
     background: #9800d9;
-    margin: 10px 0;
-    padding: 10px;
+    margin: 5px 0;
+    padding: 8px;
     border-radius: 5px;
 }
 
@@ -75,7 +82,10 @@ nav {
     font-size: clamp(0.8rem, 2vw, 1rem);
     color: #FFF;
     border-radius: 3px;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    min-height: 40px;
+    min-width: 40px;
+    touch-action: manipulation;
 }
 
 #menu li a:hover {
@@ -89,8 +99,19 @@ nav {
     color: #9800d9;
 }
 
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    padding: 3px 10px 20px 10px;
+}
+
 .container {
     max-width: 900px;
+    width: min(100%, 900px);
     margin: 30px auto;
     padding: 20px;
 }
@@ -102,22 +123,29 @@ nav {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
 }
 
-.formDiv {
-    flex: 1;
+.formDiv,
+.welcomeDiv {
+    flex: 1 1 320px;
+    max-width: 520px;
     min-width: 280px;
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
 }
 
-.formDiv h2 {
+.formDiv h2,
+.welcomeDiv h2 {
     font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 15px;
     color: #333;
 }
 
-.formDiv p {
+.formDiv p,
+.welcomeDiv p {
     font-size: clamp(0.9rem, 2vw, 1rem);
     margin: 10px 0;
     color: #666;
@@ -220,32 +248,70 @@ nav {
 }
 
 .welcomeDiv {
-    flex: 1;
-    min-width: 280px;
-    padding: 20px;
     background: linear-gradient(135deg, #9800d9, #6b00a3);
-    border-radius: 8px;
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.welcomeDiv h2 {
-    color: white;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: 15px;
 }
 
 .welcomeDiv p {
     color: rgba(255, 255, 255, 0.9);
-    font-size: clamp(0.95rem, 2vw, 1.1rem);
-    margin-bottom: 20px;
 }
 
 .btn2 {
     background-color: white;
     color: #9800d9;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 5px;
+    }
+
+    h1 {
+        margin: 15px auto;
+    }
+
+    #menu ul {
+        flex-direction: column;
+    }
+
+    #menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #menu li a {
+        width: 100%;
+        display: block;
+    }
+
+    .container {
+        margin: 20px 10px;
+        padding: 10px;
+    }
+
+    .formWraper {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px 5px;
+    }
+
+    h1 {
+        margin: 10px auto;
+        font-size: 1.5rem;
+    }
+
+    .container {
+        margin: 15px 5px;
+        padding: 5px;
+    }
+
+    .formWraper {
+        padding: 15px;
+    }
 }
 
 .btn2:hover {
