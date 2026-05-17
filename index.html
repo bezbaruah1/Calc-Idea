@@ -11,10 +11,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
         <link rel="preload" href="CSS-Pages/home.css" as="style">
         <link rel="stylesheet" href="CSS-Pages/home.css">
+        <link rel="stylesheet" href="CSS-Pages/header3d.css">
     </head>
     <body>
         <header>
-            <h1> Professional Laptop, Network & CCTV Support</h1>
+            <div class="header-inner">
+                <h1> Professional Laptop, Network & CCTV Support</h1>
+                <button id="toggle3D" class="toggle-3d-btn" aria-pressed="false" title="Toggle 3D header">3D</button>
+            </div>
         </header>
         <nav>
             <div id="menu">
@@ -64,6 +68,7 @@
             </div>
         </main>
         
+        <script src="js/header3d.js" defer></script>
         <script src="default.js" defer></script>  
     </body>
 </html>

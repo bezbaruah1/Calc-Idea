@@ -1,0 +1,49 @@
+/* 3D Header Preview Styles */
+header{
+    padding: 1.6rem 1rem;
+    background: transparent !important;
+    overflow: visible;
+}
+
+.header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+header h1{
+    font-size: 2rem;
+    color: #fff;
+    margin: 0;
+    transform-style: preserve-3d;
+    transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), text-shadow 220ms ease;
+}
+
+.toggle-3d-btn{
+    display: none;
+}
+
+/* 3D enabled state */
+header.three-d{
+    perspective: 1200px;
+}
+
+header.three-d h1{
+    text-shadow: 0 22px 48px rgba(0,0,0,0.28);
+}
+
+header::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(255,255,255,0.05), transparent 30%);
+}
+
+/* hide control on small screens */
+@media (max-width: 520px){
+    header h1{ font-size: 1.6rem; }
+}
