@@ -12,6 +12,7 @@
         <link rel="preload" href="CSS-Pages/home.css" as="style">
         <link rel="stylesheet" href="CSS-Pages/home.css">
         <link rel="stylesheet" href="CSS-Pages/header3d.css">
+        <link rel="stylesheet" href="CSS-Pages/calc.css">
     </head>
     <body>
         <header>
@@ -34,12 +35,15 @@
         
         <main>
             <div class="preview-controls">
-                <button id="preview3DBtn" class="toggle-3d-btn">Enable 3D Preview</button>
+                <div class="preview-actions">
+                    <button id="preview3DBtn" class="toggle-3d-btn">Enable 3D Preview</button>
+                    <button id="themeToggle" class="toggle-theme-btn" aria-pressed="false" title="Toggle theme">Theme</button>
+                </div>
             </div>
             
             <div id="perspective-container" class="perspective-container">
                 <div class="calculator-container" id="calculatorElement">
-                    <input class="display-box" type="text" id="result" disabled aria-label="Calculator display" />
+                    <input class="display-box" type="text" id="result" readonly aria-label="Calculator display" />
                     
                     <div class="buttons-grid">
                     <button class="button btn-clear" id="clearBtn" type="button">C</button>
@@ -64,11 +68,25 @@
                     
                     <button class="button btn-zero" type="button" data-num="0">0</button>
                 </div>
+                <div class="advanced-row">
+                    <button class="button" type="button" data-fn="(">(</button>
+                    <button class="button" type="button" data-fn=")">)</button>
+                    <button class="button" type="button" data-fn="^">^</button>
+                    <button class="button" type="button" data-fn="pi">π</button>
+                    <button class="button" type="button" data-fn="sqrt">√</button>
+                </div>
+                <div class="history-panel" id="historyPanel" aria-live="polite">
+                    <div class="history-header">
+                        <strong>History</strong>
+                        <button id="clearHistoryBtn" class="small">Clear</button>
+                    </div>
+                    <ul id="historyList"></ul>
+                </div>
             </div>
             </div>
         </main>
         
         <script src="js/header3d.js" defer></script>
-        <script src="default.js" defer></script>  
+        <script src="js/app.js" defer></script>
     </body>
 </html>
